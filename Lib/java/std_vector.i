@@ -123,7 +123,7 @@ SWIGINTERN jint SWIG_VectorSize(size_t size) {
       value_type doRemove(jint index) throw (std::out_of_range) {
         jint size = static_cast<jint>(self->size());
         if (0 <= index && index < size) {
-          CTYPE const old_value = (*self)[index];
+          CTYPE const old_value = std::move((*self)[index]);
           self->erase(self->begin() + index);
           return old_value;
         } else {
